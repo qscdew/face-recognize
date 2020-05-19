@@ -54,6 +54,8 @@ while True:
         # 输出检验结果以及用户名
         cv2.putText(img, str(idum), (x+5, y-5), font, 1, (0, 0, 255), 1)
         cv2.putText(img, str(confidence), (x+5, y+h), font, 1, (0, 255, 0), 1)
+
+
         print(str(idum),str(confidence))
 
 
