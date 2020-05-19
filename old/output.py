@@ -20,7 +20,8 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 idnum = 0
 # 设置好与ID号码对应的用户名，如下，如0对应的就是初始
 
-names = ['axin', 'zhuhao', 'Trump', 'Obama', 'songbinbin', 'xuzhuoqun', 'xuzhuoqun', 'xuzhuoqun', 'xuzhuoqun', 'xuzhuoqun', 'xuzhuoqun', 'xuzhuoqun', 'xuzhuoqun', 'xuzhuoqun', 'xuzhuoqun', 'xuzhuoqun']
+names = [' ', ' ', 'Trump', 'Obama', ' ', ' ', ' ', 'Liucixin', 'Anbei', '', 'Luoxiang', 'Johnson', 'Macron', 'Yangmi', 'Wangsicong']
+
 
 # 调用摄像头
 cam = cv2.VideoCapture(0)
