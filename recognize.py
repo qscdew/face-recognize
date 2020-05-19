@@ -1,6 +1,10 @@
+import os
+
 import cv2
+import numpy
 from PIL import Image
 class Recognize:
+
     def __init__(self,trainner_yml,cascade_path,names):
         self.trainner_yml=trainner_yml #训练好的模型路径
         self.cascade_path=cascade_path #人脸分类器的路径地址
@@ -18,8 +22,13 @@ class Recognize:
         # 加载一个字体，用于识别后，在图片上标注出对象的名字
         self.font = cv2.FONT_HERSHEY_SIMPLEX
 
+        #保存结果
+        self.result=[]
+
     def show_result(self):
-        print(self.result_name,self.result_confidence)
+        #print(self.result)
+        for i in self.result:
+            print(i)
 
     #调用摄像头识别
     def cam_recongnize(self):
@@ -63,15 +72,51 @@ class Recognize:
                 self.result_confidence=str(confidence)
                 return 1
 
-
-
     # 识别图片
-    def img_recognize(self,img_path):
-        idum=""
-        confidence=0
+    def img_recognize(self, path):
 
-        #to do
 
-        self.result_name=str(idum)
-        self.result_confidence=str(confidence)
-        return 1
+        image_paths = [os.path.join(path, f) for f in os.listdir(path)]
+        # 遍历图片路径，导入图片和id添加到list中
+        for image_path in image_paths:
+            # 通过图片路径将其转换为灰度图片
+            gray_img = Image.open(image_path).convert('L')
+            img = cv2.imread(image_path)
+            img = numpy.array(img)
+            gray_img = numpy.array(gray_img)
+            minW = 0.1 * img.shape[1]
+            minH = 0.1 * img.shape[0]
+            faces = self.face_cascade.detectMultiScale(
+                gray_img,
+                scaleFactor=1.2,
+                minNeighbors=5,
+                minSize=(int(minW), int(minH))
+            )
+
+            for (x, y, w, h) in faces:
+
+                idnum, confidence = self.recognizer.predict(gray_img[y:y + h, x:x + w])
+                # idnum和confidence表示predict返回的标签和置信度，confidence越小匹配度越高，0表示完全匹配
+
+                # 计算出一个检验结果
+                if confidence < 100:
+                    name = self.names[idnum]
+                    confidence = "{0}%".format(round(100 - confidence))
+                else:
+                    name = "unknown"
+                    confidence = "{0}%".format(round(100 - confidence))
+
+                # 输出检验结果以及用户名
+                cv2.putText(img, str(name), (x + 5, y - 5), self.font, 1, (0, 0, 255), 1)
+                cv2.putText(img, str(confidence), (x + 5, y + h), self.font, 1, (0, 255, 0), 1)
+
+                cv2.destroyAllWindows()
+
+                res={"image":image_path,
+                     "name":str(name),
+                     "id":idnum,
+                     "confidence":confidence}
+
+                self.result.append(res)
+
+
