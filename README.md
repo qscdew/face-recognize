@@ -1,4 +1,5 @@
 # face-recognize
+
 ```
 Package               Version
 --------------------- --------
@@ -10,3 +11,6 @@ Pillow                7.1.2
 pip                   19.0.3
 setuptools            40.8.0
 ```
+
+20年，基于python和opencv库实现window、Linux和树莓派下的人脸识别
+
