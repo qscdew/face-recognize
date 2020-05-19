@@ -9,7 +9,8 @@ face_detector = cv2.CascadeClassifier(r'/haarcascade_frontalface_default.xml')  
 face_id = input('\n User data input,Look at the camera and wait ...')
 # sampleNum用来计数样本数目
 count = 0
-
+name="ceshi"
+id = 1
 while True:
     # 从摄像头读取图片
     success, img = cap.read()
@@ -32,7 +33,7 @@ while True:
         # (这里是建立了data的文件夹，当然也可以设置为其他路径或者调用数据库)
 
         # cv2.imwrite("D:/pycharm/facedata/User."+str(count)+'.jpg', gray[y:y+h, x:x+w])   #原来的代码
-        cv2.imwrite("C:/now/face/face-recognize/data/zhuoqun.9."+str(count)+'.jpg', gray[y:y + h, x:x + w])
+        cv2.imwrite("C:/now/face/face-recognize/data/"+name+"."+str(id)+"."+str(count)+'.jpg', gray[y:y + h, x:x + w])
         # 显示图片
     cv2.imshow('image', img)
         # 保持画面的连续。waitkey方法可以绑定按键保证画面的收放，通过q键退出摄像

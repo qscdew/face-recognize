@@ -53,24 +53,27 @@ class Recognize:
                 # idnum和confidence表示predict返回的标签和置信度，confidence越小匹配度越高，0表示完全匹配
 
                 # 计算出一个检验结果
-                if confidence < 80:
-                    idum = self.names[idnum]
-                    confidence = "{0}%".format(round(100 - confidence))
+                if confidence < 120:
+                    name = self.names[idnum]
+                    confidence = "{0}%".format(round(120 - confidence))
                 else:
-                    idum = "unknown"
-                    confidence = "{0}%".format(round(100 - confidence))
+                    name = "unknown"
+                    confidence = "{0}%".format(round(120 - confidence))
 
                 # 输出检验结果以及用户名
-                cv2.putText(img, str(idum), (x + 5, y - 5), self.font, 1, (0, 0, 255), 1)
+                cv2.putText(img, str(name), (x + 5, y - 5), self.font, 1, (0, 0, 255), 1)
                 cv2.putText(img, str(confidence), (x + 5, y + h), self.font, 1, (0, 255, 0), 1)
 
                 # 识别到结果 释放资源
                 cam.release()
                 cv2.destroyAllWindows()
 
-                self.result_name=str(idum)
-                self.result_confidence=str(confidence)
-                return 1
+                res = {"image": "cam_image",
+                       "name": str(name),
+                       "id": idnum,
+                       "confidence": confidence}
+
+                self.result.append(res)
 
     # 识别图片
     def img_recognize(self, path):
@@ -80,10 +83,9 @@ class Recognize:
         # 遍历图片路径，导入图片和id添加到list中
         for image_path in image_paths:
             # 通过图片路径将其转换为灰度图片
-            gray_img = Image.open(image_path).convert('L')
             img = cv2.imread(image_path)
-            img = numpy.array(img)
-            gray_img = numpy.array(gray_img)
+            gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
             minW = 0.1 * img.shape[1]
             minH = 0.1 * img.shape[0]
             faces = self.face_cascade.detectMultiScale(
@@ -99,12 +101,12 @@ class Recognize:
                 # idnum和confidence表示predict返回的标签和置信度，confidence越小匹配度越高，0表示完全匹配
 
                 # 计算出一个检验结果
-                if confidence < 100:
+                if confidence < 120:
                     name = self.names[idnum]
-                    confidence = "{0}%".format(round(100 - confidence))
+                    confidence = "{0}%".format(round(120 - confidence))
                 else:
                     name = "unknown"
-                    confidence = "{0}%".format(round(100 - confidence))
+                    confidence = "{0}%".format(round(120 - confidence))
 
                 # 输出检验结果以及用户名
                 cv2.putText(img, str(name), (x + 5, y - 5), self.font, 1, (0, 0, 255), 1)
