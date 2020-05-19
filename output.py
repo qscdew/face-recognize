@@ -3,9 +3,12 @@ import cv2
 
 # 准备好识别方法
 recognizer = cv2.face.LBPHFaceRecognizer_create()
+recognizer2 = cv2.face.LBPHFaceRecognizer_create()
 
 # 使用之前训练好的模型
-recognizer.read('trainner/trainner_3.yml')
+recognizer2.read('trainner/trainner_3.yml')
+recognizer.read('trainner/zhuoqun_trainner.yml')
+
 
 # 再次调用人脸分类器
 cascade_path = 'haarcascade_frontalface_default.xml'
@@ -17,7 +20,7 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 idnum = 0
 # 设置好与ID号码对应的用户名，如下，如0对应的就是初始
 
-names = ['axin', 'zhuhao', 'Trump', 'Obama', 'songbinbin', 'xuzhuoqun']
+names = ['axin', 'zhuhao', 'Trump', 'Obama', 'songbinbin', 'xuzhuoqun', 'xuzhuoqun', 'xuzhuoqun', 'xuzhuoqun', 'xuzhuoqun', 'xuzhuoqun', 'xuzhuoqun', 'xuzhuoqun', 'xuzhuoqun', 'xuzhuoqun', 'xuzhuoqun']
 
 # 调用摄像头
 cam = cv2.VideoCapture(0)
@@ -51,7 +54,8 @@ while True:
         # 输出检验结果以及用户名
         cv2.putText(img, str(idum), (x+5, y-5), font, 1, (0, 0, 255), 1)
         cv2.putText(img, str(confidence), (x+5, y+h), font, 1, (0, 255, 0), 1)
-        cv2.putText(img, str(idnum), (x + int(w/2), y + h), font, 1, (0, 0, 255), 1)
+        print(str(idum),str(confidence))
+
 
 
         # 展示结果

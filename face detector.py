@@ -4,7 +4,7 @@ import cv2
 # 调用笔记本内置摄像头，参数为0，如果有其他的摄像头可以调整参数为1,2
 cap = cv2.VideoCapture(0)
 # 调用人脸分类器，要根据实际路径调整3
-face_detector = cv2.CascadeClassifier(r'D:/faceRecognize/opencv-master/data/haarcascades/haarcascade_frontalface_default.xml')  #待更改
+face_detector = cv2.CascadeClassifier(r'C:/now/face/face-recognize/haarcascade_frontalface_default.xml')  #待更改
 # 为即将录入的脸标记一个id
 face_id = input('\n User data input,Look at the camera and wait ...')
 # sampleNum用来计数样本数目
@@ -32,7 +32,7 @@ while True:
         # (这里是建立了data的文件夹，当然也可以设置为其他路径或者调用数据库)
 
         # cv2.imwrite("D:/pycharm/facedata/User."+str(count)+'.jpg', gray[y:y+h, x:x+w])   #原来的代码
-        cv2.imwrite("D:/pycharm/facedata/User.3."+str(count)+'.jpg', gray[y:y + h, x:x + w])
+        cv2.imwrite("C:/now/face/face-recognize/data/zhuoqun.9."+str(count)+'.jpg', gray[y:y + h, x:x + w])
         # 显示图片
     cv2.imshow('image', img)
         # 保持画面的连续。waitkey方法可以绑定按键保证画面的收放，通过q键退出摄像
@@ -40,7 +40,7 @@ while True:
     if k == '27':
         break
     # 或者得到800个样本后退出摄像，这里可以根据实际情况修改数据量，实际测试后800张的效果是比较理想的
-    elif count >= 100:  # 可修改
+    elif count >= 1000:  # 可修改
         break
 
 # 关闭摄像头，释放资源

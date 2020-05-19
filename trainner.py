@@ -7,13 +7,13 @@ import numpy as np
 from PIL import Image
 # 导入pillow库，用于处理图像
 # 设置之前收集好的数据文件路径
-path = 'D:/pycharm/facedata/axin'
+path = 'C:/now/face/face-recognize/data'
 
 # 初始化识别的方法
 recog = cv2.face.LBPHFaceRecognizer_create()
 
 # 调用熟悉的人脸分类器
-detector = cv2.CascadeClassifier(r'D:/faceRecognize/opencv-master/data/haarcascades/haarcascade_frontalface_default.xml')
+detector = cv2.CascadeClassifier(r'C:/now/face/face-recognize/haarcascade_frontalface_default.xml')
 
 # 创建一个函数，用于从数据集文件夹中获取训练图片,并获取id
 # 注意图片的命名格式为User.id.sampleNum
@@ -38,7 +38,7 @@ def get_images_and_labels(path):
             continue
 
         # 为了获取id，将图片和路径分裂并获取
-        id = int(os.path.split(image_path)[1].split("_")[1])
+        id = int(os.path.split(image_path)[1].split(".")[1])
         faces = detector.detectMultiScale(img_np)
 
         # 将获取的图片和id添加到list中
@@ -53,4 +53,4 @@ faces, ids = get_images_and_labels(path)
 # 训练模型
 recog.train(faces, np.array(ids))
 # 保存模型
-recog.write('trainner/axin_trainner.yml')
+recog.write('trainner/zhuoqun_trainner.yml')
