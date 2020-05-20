@@ -53,4 +53,4 @@ faces, ids = get_images_and_labels(path)
 # 训练模型
 recog.train(faces, np.array(ids))
 # 保存模型
-recog.write('trainner/zhuoqun_trainner.yml')
+recog.write('trainner/trainner_2.yml')

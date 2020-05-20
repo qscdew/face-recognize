@@ -1,9 +1,9 @@
 from recognize import Recognize as R
 
-trainner_yml='trainner/zhuoqun_trainner.yml'
+trainner_yml='trainner/trainner.yml'
 cascade_path = 'haarcascade_frontalface_default.xml'
-names = ['axin', 'zhuhao', 'Trump', 'Obama', 'songbinbin', 'xuzhuoqun', 'xuzhuoqun', 'xuzhuoqun', 'xuzhuoqun', 'xuzhuoqun', 'xuzhuoqun', 'xuzhuoqun', 'xuzhuoqun', 'xuzhuoqun', 'xuzhuoqun', 'xuzhuoqun']
+names = [' ', ' ', 'Trump', 'Obama', ' ', ' ', ' ', 'Liucixin', 'Anbei', '', 'Luoxiang', 'Johnson', 'Macron', 'Yangmi', 'Wangsicong']
 
 a=R(trainner_yml,cascade_path,names)
-a.cam_recongnize()
+a.img_recognize("C:/now/face/face-recognize/img")
 a.show_result()
