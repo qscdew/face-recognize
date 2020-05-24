@@ -1,6 +1,9 @@
 # face-recognize
 基于python和opencv库实现window、Linux和树莓派下的人脸识别。
 
+
+2020/05/24更新  main函数新增口罩识别。
+
 ## 环境
 ```
 Package               Version
