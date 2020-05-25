@@ -28,13 +28,13 @@ utils	              1.0.1
 ## 运行
 ```
 python main.py
-```
-可通过函数调用三个不同的功能
-# 识别文件夹中的照片
-# a.img_recognize("D:/pycharm/facetest/baojianfeng")
-# 摄像头识别
-# a.cam_recongnize()
-# 口罩识别
-a.mask_recognize()
 
+可通过函数调用三个不同的功能
+识别文件夹中的照片
+a.img_recognize("D:/pycharm/facetest/baojianfeng")
+摄像头识别
+a.cam_recongnize()
+口罩识别
+a.mask_recognize()
+```
 
